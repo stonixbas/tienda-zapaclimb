@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90" role="img" aria-label="Zapatilla">
+  <!-- Ilustración genérica de zapatilla para las tarjetas del catálogo
+       (la BD no guarda fotos: todas las zapatillas usan esta imagen). -->
+  <path d="M14 66 L14 48 Q14 38 24 37 L52 35 L66 20 Q71 15 78 18 L92 28 Q104 36 122 40 L138 44 Q148 47 148 60 L148 66 Z"
+        fill="#2a2e37" stroke="#ff6b1a" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M62 26 L74 36 M68 21 L80 31 M75 18 L86 27" stroke="#e8e8ea" stroke-width="3" stroke-linecap="round"/>
+  <path d="M34 54 Q70 40 112 50 L132 56" fill="none" stroke="#ff6b1a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="10" y="64" width="142" height="10" rx="5" fill="#e8e8ea"/>
+  <path d="M18 74 L148 74" stroke="#ff6b1a" stroke-width="2" stroke-dasharray="6 6"/>
+</svg>

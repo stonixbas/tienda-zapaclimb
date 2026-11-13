@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZapaClimb">
+  <!-- Logo de ZapaClimb: dos picos de montaña (Climb) con la cima nevada,
+       sobre una suela redondeada (Zapa). Naranja de la marca sobre fondo oscuro. -->
+  <rect width="64" height="64" rx="14" fill="#16181d"/>
+  <path d="M8 46 L24 20 L32 32 L40 16 L56 46 Z" fill="#ff6b1a"/>
+  <path d="M40 16 L45.5 26 L42 24.5 L38.5 27 L35.6 23.2 Z" fill="#fff"/>
+  <rect x="8" y="48" width="48" height="5" rx="2.5" fill="#ff6b1a" opacity=".55"/>
+</svg>

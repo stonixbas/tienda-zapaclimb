@@ -1,0 +1,419 @@
+/* estilos.css · ZapaClimb · capa cliente (CSS)
+   Una sola hoja de estilos para toda la web: el aspecto se cambia en un único sitio.
+   Estilo deportivo oscuro con el naranja de la marca.
+   Casi todo usa selectores de ETIQUETA (table, form, button...), así las páginas
+   no necesitan clases en cada elemento; solo la cabecera, el pie y el catálogo las usan. */
+
+/* ---------- 1. Variables: colores y medidas de la marca ---------- */
+:root {
+  --fondo: #0f1115;          /* casi negro */
+  --superficie: #181b21;     /* tarjetas, tablas, formularios */
+  --superficie-2: #20242c;   /* filas alternas, inputs */
+  --borde: #2c313b;
+  --texto: #ecedf0;
+  --texto-suave: #9aa0ab;
+  --naranja: #ff6b1a;        /* color de la marca */
+  --naranja-oscuro: #e0550a;
+  --rojo: #ff4d4f;           /* borrar */
+  --verde: #3ecf8e;          /* disponible */
+  --radio: 12px;
+  --sombra: 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+/* ---------- 2. Base ---------- */
+* { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;      /* el pie se queda abajo aunque haya poco contenido */
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.55;
+}
+
+a { color: var(--naranja); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2 {
+  margin: 0 0 .6em;
+  line-height: 1.15;
+  letter-spacing: .02em;
+}
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+/* Rayita naranja bajo cada título principal */
+h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: .4em;
+  border-radius: 2px;
+  background: var(--naranja);
+}
+h2 { font-size: 1.25rem; font-weight: 700; margin-top: 1.4em; }
+
+p { margin: 0 0 1em; }
+
+/* ---------- 3. Cabecera y menú (cabecera.php) ---------- */
+.cabecera {
+  position: sticky;            /* el menú se queda arriba al hacer scroll */
+  top: 0;
+  z-index: 10;
+  background: rgba(15, 17, 21, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--borde);
+}
+.cabecera-dentro {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: .7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;             /* en el móvil el menú baja a otra línea */
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--texto);
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.marca:hover { text-decoration: none; }
+.marca strong { color: var(--naranja); font-weight: 800; }
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  flex-wrap: wrap;
+}
+.menu a {
+  color: var(--texto-suave);
+  padding: .45rem .8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .95rem;
+  transition: background .15s, color .15s;
+}
+.menu a:hover { color: var(--texto); background: var(--superficie-2); text-decoration: none; }
+.menu a.activo { color: #fff; background: var(--naranja); }
+.menu .usuario {
+  color: var(--texto-suave);
+  font-size: .85rem;
+  padding: 0 .4rem 0 .8rem;
+  border-left: 1px solid var(--borde);
+  margin-left: .3rem;
+}
+.menu .salir { border: 1px solid var(--borde); }
+/* Globo con las unidades del carrito */
+.globo {
+  display: inline-block;
+  min-width: 1.4em;
+  padding: 0 .35em;
+  margin-left: .2em;
+  border-radius: 999px;
+  background: var(--naranja);
+  color: #fff;
+  font-size: .75rem;
+  text-align: center;
+}
+.menu a.activo .globo { background: #fff; color: var(--naranja); }
+
+/* ---------- 4. Contenido y pie ---------- */
+.contenedor {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.pie {
+  border-top: 1px solid var(--borde);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: .85rem;
+}
+.pie p { margin: .2em 0; }
+.pie span { color: var(--naranja); }
+
+/* ---------- 5. Formularios ---------- */
+/* Formularios "grandes" (login, registro, alta/modificación): una tarjeta centrada.
+   Los formularios pequeños que van dentro de una tabla se tratan aparte (apartado 6). */
+main > form {
+  max-width: 520px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.6rem;
+  box-shadow: var(--sombra);
+  margin-bottom: 1.5rem;
+}
+main > form label {
+  display: block;
+  margin: 1rem 0 .35rem;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--texto-suave);
+}
+main > form label:first-of-type { margin-top: 0; }
+main > form input,
+main > form select { width: 100%; }
+
+input, select {
+  font: inherit;
+  color: var(--texto);
+  background: var(--superficie-2);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: .6rem .75rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 3px rgba(255, 107, 26, .25);
+}
+/* El calendario y las flechas del navegador, en modo oscuro */
+input, select { color-scheme: dark; }
+option:disabled { color: #666; }
+
+button {
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  padding: .6rem 1.1rem;
+  background: var(--naranja);
+  color: #fff;
+  transition: background .15s, transform .1s;
+}
+button:hover { background: var(--naranja-oscuro); }
+button:active { transform: scale(.97); }
+main > form button[type="submit"] { width: 100%; margin-top: 1.4rem; padding: .8rem; font-size: 1rem; }
+
+/* Botones de BORRAR en rojo: se reconocen por el action del formulario
+   (eliminar_usuario.php, eliminar_zapatilla.php, eliminar_talla.php), sin tocar el HTML */
+form[action*="eliminar"] button {
+  background: transparent;
+  color: var(--rojo);
+  border: 1px solid var(--rojo);
+}
+form[action*="eliminar"] button:hover { background: var(--rojo); color: #fff; }
+
+/* ---------- 6. Tablas (listas del admin, tallas, carrito) ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;   /* quita el border="1" doble del HTML */
+  border: 0;
+  background: var(--superficie);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  margin-bottom: 1.5rem;
+}
+th, td {
+  border: 0;
+  border-bottom: 1px solid var(--borde);
+  padding: .8rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+th {
+  background: var(--superficie-2);
+  color: var(--texto-suave);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+tr:last-child td { border-bottom: 0; }
+tr:hover td { background: rgba(255, 255, 255, .02); }
+/* Formularios pequeños dentro de una celda: en línea */
+td form { display: inline-flex; gap: .4rem; align-items: center; margin: 0 .2rem .2rem 0; }
+td input[type="number"] { width: 5.5rem; padding: .4rem .5rem; }
+td button { padding: .4rem .8rem; font-size: .88rem; }
+/* Enlaces de acción en las tablas (Tallas, Modificar) como botones discretos */
+td a {
+  display: inline-block;
+  padding: .35rem .75rem;
+  margin: 0 .2rem .2rem 0;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font-size: .88rem;
+  color: var(--texto);
+}
+td a:hover { border-color: var(--naranja); color: var(--naranja); text-decoration: none; }
+
+/* La línea de enlaces de arriba ("Nueva zapatilla · Volver") */
+main > p:first-of-type a {
+  font-weight: 600;
+}
+
+strong { color: #fff; }
+
+/* ---------- 7. Catálogo: tarjetas de zapatillas (catalogo.php) ---------- */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  /* tantas columnas como quepan */
+  gap: 1.4rem;
+}
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  transition: transform .2s, border-color .2s;
+}
+.tarjeta:hover { transform: translateY(-4px); border-color: var(--naranja); }
+.tarjeta-imagen {
+  background: radial-gradient(circle at 30% 20%, #2b2f38, #14161b 70%);
+  padding: 1.6rem 1.2rem;
+  display: flex;
+  justify-content: center;
+}
+.tarjeta-imagen img { width: 100%; max-width: 210px; height: auto; transition: transform .3s; }
+.tarjeta:hover .tarjeta-imagen img { transform: rotate(-6deg) scale(1.05); }
+.tarjeta-cuerpo { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+.tarjeta h2 { margin: 0 0 .2em; font-size: 1.15rem; }
+.tarjeta .color { color: var(--texto-suave); font-size: .9rem; margin-bottom: .6em; }
+.tarjeta .precio { font-size: 1.5rem; font-weight: 800; color: var(--naranja); margin-bottom: .8em; }
+.tarjeta .agotada { color: var(--texto-suave); font-style: italic; margin-top: auto; }
+.tarjeta form { display: grid; grid-template-columns: 1fr 5rem; gap: .6rem; margin-top: auto; }
+.tarjeta label { font-size: .8rem; color: var(--texto-suave); display: flex; flex-direction: column; gap: .25rem; }
+.tarjeta select, .tarjeta input { width: 100%; padding: .5rem; }
+.tarjeta button { grid-column: 1 / -1; }
+/* Tallas como "pastillas" (lo que ve un visitante o el admin, sin formulario) */
+.tallas { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .9rem; }
+.talla {
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: .15rem .55rem;
+  font-size: .85rem;
+}
+.agotada-talla { color: #666; text-decoration: line-through; }
+/* Enlace con aspecto de botón ("Inicia sesión para comprar") */
+.boton {
+  display: block;
+  margin-top: auto;
+  text-align: center;
+  background: var(--naranja);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: .6rem 1rem;
+}
+.boton:hover { background: var(--naranja-oscuro); text-decoration: none; }
+/* Aviso informativo (no es un error) */
+.aviso {
+  border-left: 4px solid var(--naranja);
+  background: rgba(255, 107, 26, .08);
+  padding: .6rem 1rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* ---------- 8. Carrito y mensajes ---------- */
+.total {
+  font-size: 1.4rem;
+  text-align: right;
+}
+.total strong { color: var(--naranja); }
+/* Botón "Confirmar compra": grande y a la derecha */
+form[action*="confirmar_compra"] { text-align: right; }
+form[action*="confirmar_compra"] button { padding: .9rem 2rem; font-size: 1.05rem; }
+
+/* Mensajes de error y avisos */
+.alerta {
+  background: rgba(255, 77, 79, .12);
+  border: 1px solid var(--rojo);
+  color: #ffb3b4;
+  border-radius: 8px;
+  padding: .7rem 1rem;
+  max-width: 520px;
+}
+
+/* ---------- 9. Móvil ---------- */
+@media (max-width: 700px) {
+  .contenedor { padding: 1.4rem 1rem 2rem; }
+  .menu { width: 100%; justify-content: flex-start; }
+  .menu .usuario { display: none; }       /* en pantalla pequeña sobra el nombre */
+  /* Las tablas anchas hacen scroll lateral en vez de romper la página */
+  table { display: block; overflow-x: auto; white-space: nowrap; }
+  main > form { padding: 1.2rem; }
+}
+
+/* ---------- 9. Mensajes de la capa negocio (plantilla_mensaje.php) ---------- */
+/* Tarjeta centrada con el texto y el enlace de "Volver" convertido en botón */
+.mensaje {
+  max-width: 560px;
+  margin: 2rem auto;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--naranja);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem 1.75rem;
+}
+.mensaje p { margin: 0 0 1rem; }
+.mensaje a {
+  display: inline-block;
+  background: var(--naranja);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: .55rem 1.2rem;
+}
+.mensaje a:hover { background: var(--naranja-oscuro); text-decoration: none; }
+
+/* ---------- 10. Fotos de las zapatillas ---------- */
+/* Tarjeta con foto real: la foto ocupa todo el ancho; object-fit: cover la recorta
+   sin deformarla para que todas las tarjetas midan lo mismo */
+.tarjeta-imagen.con-foto { padding: 0; }
+.tarjeta-imagen.con-foto img { max-width: none; width: 100%; height: 200px; object-fit: cover; }
+.tarjeta:hover .tarjeta-imagen.con-foto img { transform: scale(1.05); }
+.tarjeta-imagen { overflow: hidden; }
+/* Miniatura en la lista del admin y foto actual en el formulario */
+.miniatura { width: 64px; height: 48px; object-fit: cover; border-radius: 6px; display: block; }
+.foto-actual { width: 160px; height: 110px; object-fit: cover; border-radius: 8px; display: block; }
+
+/* ---------- 11. Panel de inicio (inicio.php) ---------- */
+/* Tarjetas con un número grande; la rejilla pone tantas columnas como quepan */
+.panel { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.2rem; }
+.panel-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--naranja);
+  border-radius: var(--radio);
+  padding: 1.3rem 1.4rem;
+  color: var(--texto);
+  box-shadow: var(--sombra);
+  transition: transform .2s, border-color .2s;
+}
+a.panel-tarjeta:hover { transform: translateY(-4px); border-color: var(--naranja); text-decoration: none; }
+.panel-numero { font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--naranja); }
+.panel-titulo { font-weight: 700; font-size: 1.05rem; }
+.panel-texto { color: var(--texto-suave); font-size: .9rem; }
+/* Tallas sin stock: en rojo para que salte a la vista */
+.panel-alerta { border-top-color: var(--rojo); }
+.panel-alerta .panel-numero { color: var(--rojo); }
